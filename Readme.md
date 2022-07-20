@@ -1,8 +1,8 @@
-# Generate descriptcion from melt kdenlive
+# Generate description from melt kdenlive
 
 Get note from kdenlive and generate a file for description youtube
 
-Get a template for youtube 
+Generate a template for youtube 
 
 ```
 {{Title}}
