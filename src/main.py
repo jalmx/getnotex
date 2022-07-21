@@ -23,7 +23,7 @@ def parse_note(note_raw):
 def main():
     note_raw = read_kdenlive(path_file)
     
-    with open("note.html", "+w", encoding="utf-8") as note:
+    with open("assets/note.html", "+w", encoding="utf-8") as note:
         note.write(note_raw)
     
 if __name__ == "__main__":
