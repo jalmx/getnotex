@@ -173,4 +173,4 @@ if __name__ == "__main__":
     # test()
     cli()
     
-## por el momento solo pasa el nombre el archivo y generara el archivo .description, aun no tiene mas caracteristicas
+## por el momento solo pasa el nombre el archivo y generara el archivo .description, aun no tiene mas características

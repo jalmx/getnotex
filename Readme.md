@@ -52,5 +52,8 @@ Texto sin referencia
 
 ## Requirements
 
-
 - `BeautifulSoup`: `pip install bs4 --user`
+
+## Build release
+
+To generate a release exec script `../build.sh`
