@@ -147,16 +147,24 @@ def cli():
     
     HOW TO USE:
     
-        get_note file.kdenlive 
+        getnotex file.kdenlive 
     """
 
-    if len(argv) < 2:
+    if len(argv) < 2 or len(argv) > 2:
         print(HELP)
         exit(1)
 
     file_name = argv[1]
     
-    get_note(file_name, save=True)
+    if file_name == "--help":
+        print(HELP)
+        exit(0)
+    
+    try:
+        get_note(file_name, save=True)
+    except:
+        print(HELP)
+        exit(1)
     
     exit(0)
     

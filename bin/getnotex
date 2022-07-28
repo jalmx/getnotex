@@ -34,7 +34,11 @@ def get_note(path_file,save=False):
 	return B
 def test():'Function to the the module\n    ';A='./assets/notas.kdenlive';B=get_note_kdenlive(A);C=get_times(B);save_description(C,get_name_default(A))
 def cli():
-	A='\n    Script to get note from file kdenlive a youtube time format\n    \n    HOW TO USE:\n    \n        get_note file.kdenlive \n    '
-	if len(argv)<2:print(A);exit(1)
-	B=argv[1];get_note(B,save=True);exit(0)
+	A='\n    Script to get note from file kdenlive a youtube time format\n    \n    HOW TO USE:\n    \n        getnotex file.kdenlive \n    '
+	if len(argv)<2 or len(argv)>2:print(A);exit(1)
+	B=argv[1]
+	if B=='--help':print(A);exit(0)
+	try:get_note(B,save=True)
+	except:print(A);exit(1)
+	exit(0)
 if __name__=='__main__':cli()
