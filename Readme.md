@@ -28,7 +28,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;a href="20153">&lt;span style=" text-decoration: underline; color:#2980b9;">00:11:12,13&lt;/span>&lt;/a> Otro comentario a los 11:12&lt;/p>
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;a href="26862">&lt;span style=" text-decoration: underline; color:#2980b9;">00:14:56,08&lt;/span>&lt;/a> [Referencia] a otro video 14:56&lt;/p>
 &lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;a href="29508">&lt;span style=" text-decoration: underline; color:#2980b9;">00:16:24,18&lt;/span>&lt;/a> El ultimo punto 16:24&lt;/p>
-&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Texto sin refencia&lt;/p>&lt;/body>&lt;/html></property>
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Texto sin referencia&lt;/p>&lt;/body>&lt;/html></property>
 ```
 
 **To**
@@ -40,7 +40,7 @@ Al inicio
 11:12 Otro comentario a los 11:12
 14:56 [Referencia] a otro video 14:56
 16:24 El ultimo punto 16:24
-Texto sin refencia
+Texto sin referencia
 ```
 
 ## How to install
@@ -52,4 +52,5 @@ Texto sin refencia
 
 ## Requirements
 
-- `BeautifulSoup`
+
+- `BeautifulSoup`: `pip install bs4 --user`
