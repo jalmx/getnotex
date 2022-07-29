@@ -18,7 +18,7 @@ def save_description(content,file_name='description'):
 	return True
 def clear_time(line):
 	'Clear the format default from kdenlive file to youtube format\n\n    Args:\n        line (str): Line from note\n\n    Returns:\n        str: New line with the format correct to youtube\n    ';A=line;A=A.split(',')[0]
-	if A.startswith('00:'):A=A.split(':')[1:];B=':'.join(A)
+	if A.startswith('00:'):A=A.split(':')[1:-1];B=':'.join(A)
 	return B
 def clear_line(line):A='';B=line.strip().split(' ')[0];C=clear_time(B);A=line.replace(B,C);return A
 def get_times(html):
@@ -39,6 +39,6 @@ def cli():
 	B=argv[1]
 	if B=='--help':print(A);exit(0)
 	try:get_note(B,save=True)
-	except:print(A);exit(1)
+	except Exception as C:print(C);print(A);exit(1)
 	exit(0)
 if __name__=='__main__':cli()

@@ -75,7 +75,7 @@ def clear_time(line: str):
     line = line.split(",")[0]
 
     if line.startswith("00:"):
-        line = line.split(":")[1:]
+        line = line.split(":")[1:-1]
         time = ":".join(line)
 
     return time
@@ -162,7 +162,8 @@ def cli():
     
     try:
         get_note(file_name, save=True)
-    except:
+    except Exception as e:
+        print(e)
         print(HELP)
         exit(1)
     
