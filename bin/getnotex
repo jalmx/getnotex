@@ -17,9 +17,9 @@ def save_description(content,file_name='description'):
 	with open(file_name,'+w',encoding='utf-8')as A:A.write(content)
 	return True
 def clear_time(line):
-	'Clear the format default from kdenlive file to youtube format\n\n    Args:\n        line (str): Line from note\n\n    Returns:\n        str: New line with the format correct to youtube\n    ';A=line;A=A.split(',')[0]
-	if A.startswith('00:'):A=A.split(':')[1:-1];B=':'.join(A)
-	return B
+	'Clear the format default from kdenlive file to youtube format\n\n    Args:\n        line (str): Line from note\n\n    Returns:\n        str: New line with the format correct to youtube\n    ';B=':';A=line;A=A.split(',')[0]
+	if A.startswith('00:')and len(A.split(B))>2:A=A.split(B)[1:-1];C=B.join(A)
+	return C
 def clear_line(line):A='';B=line.strip().split(' ')[0];C=clear_time(B);A=line.replace(B,C);return A
 def get_times(html):
 	C=bs(html,'html.parser');D=C.body;E=D.find_all('p');B=''
