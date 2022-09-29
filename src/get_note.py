@@ -74,7 +74,7 @@ def clear_time(line: str):
     """
     line = line.split(",")[0]
 
-    if line.startswith("00:"):
+    if line.startswith("00:") and len(line.split(":")) > 2:
         line = line.split(":")[1:-1]
         time = ":".join(line)
 
