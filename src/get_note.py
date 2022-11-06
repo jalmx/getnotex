@@ -1,25 +1,35 @@
 #!/usr/bin/env python3
 
 import xml.etree.ElementTree as ET
-from bs4 import BeautifulSoup as bs
 from os import path
+from pathlib import Path
 from sys import argv, exit
 
-
+# if no existe the lib for to work
 try:
     from bs4 import BeautifulSoup as bs
 except:
     try:
         from pip._internal import main as pip
+
         pip(['install', '--user', 'bs4'])
         from bs4 import BeautifulSoup as bs
     except:
         from pip._internal import main as pip
+
         pip(['install', 'bs4'])
         from bs4 import BeautifulSoup as bs
 
 
-def get_note_kdenlive(name_file):
+def get_path_abs(path_raw: str):
+    path_file = Path(path_raw) or Path(".")
+
+    if not path_file.is_absolute():
+        return path_file.absolute()
+
+    return path_file
+
+def get_note_kdenlive(name_file: Path):
     """Get the note written in kdenlive file
 
     Args:
@@ -28,7 +38,7 @@ def get_note_kdenlive(name_file):
     Returns:
         str: Content of note
     """
-    tree = ET.parse(name_file)
+    tree = ET.parse(str(name_file))
     root = tree.getroot()
 
     note = root.findall('*/property[@name="kdenlive:documentnotes"]')[0].text
@@ -37,6 +47,14 @@ def get_note_kdenlive(name_file):
 
 
 def get_name_default(name_kdenlive: str):
+    """
+    get name from file .kdenlive to use to will save the file generated
+    Args:
+        name_kdenlive: name from file kdenlive source
+
+    Returns:
+
+    """
     name = name_kdenlive.split(path.sep)[-1]
     name = name.replace(".kdenlive", "")
     return f'{name}.description'
@@ -56,7 +74,15 @@ def save_note_html(content: str, path_save="assets/"):
 
 
 def save_description(content: str, file_name="description"):
+    """
+    save the description in file
+    Args:
+        content: string to save in file
+        file_name: name file with the description
 
+    Returns:
+
+    """
     with open(file_name, "+w", encoding="utf-8") as file:
         file.write(content)
 
@@ -72,6 +98,7 @@ def clear_time(line: str):
     Returns:
         str: New line with the format correct to youtube
     """
+    time = ""
     line = line.split(",")[0]
 
     if line.startswith("00:") and len(line.split(":")) > 2:
@@ -82,7 +109,6 @@ def clear_time(line: str):
 
 
 def clear_line(line: str):
-    new_line = ""
     time = line.strip().split(" ")[0]
     new_time = clear_time(time)
 
@@ -92,6 +118,7 @@ def clear_line(line: str):
 
 
 def get_times(html: str):
+
     content = bs(html, "html.parser")
     body = content.body
 
@@ -119,8 +146,8 @@ def get_note(path_file: str, save=False):
     Returns:
         str: All content formatted
     """
-
-    note_raw = get_note_kdenlive(path_file)
+    path_full = get_path_abs(path_file)
+    note_raw = get_note_kdenlive(path_full)
     description = get_times(note_raw)
 
     if save:
@@ -141,7 +168,6 @@ def test():
 
 
 def cli():
-
     HELP = """
     Script to get note from file kdenlive a youtube time format
     
@@ -155,23 +181,23 @@ def cli():
         exit(1)
 
     file_name = argv[1]
-    
+
     if file_name == "--help":
         print(HELP)
         exit(0)
-    
+
     try:
         get_note(file_name, save=True)
     except Exception as e:
         print(e)
         print(HELP)
         exit(1)
-    
+
     exit(0)
-    
+
 
 if __name__ == "__main__":
     # test()
     cli()
-    
+
 ## por el momento solo pasa el nombre el archivo y generara el archivo .description, aun no tiene mas características
